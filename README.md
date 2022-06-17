@@ -20,6 +20,8 @@ You will need quite a few extra programs to make it work:
 - cero
 
 ## How to use
+Download the ```DNS_perm``` and the ```DNS.txt``` files, put them in ```~/TOOLS/WORDLISTS/``` or in another directory of your choice (as long as you change it in the function accordingly)\
+\
 Paste the function in ```subscan.sh``` in your ```~/.bashrc``` file or equivalent, then "source" the file and use the tool with this example syntax:
 ```
 subscan top_domain_example.com
