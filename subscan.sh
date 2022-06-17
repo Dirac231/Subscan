@@ -10,11 +10,11 @@ subscan(){
     sudo wget https://raw.githubusercontent.com/BonJarber/fresh-resolvers/main/resolvers.txt -O /usr/share/seclists/Discovery/DNS/resolvers.txt
     puredns resolve subdomains -r /usr/share/seclists/Discovery/DNS/resolvers.txt -w tmp_puredns; cat tmp_puredns | anew -q resolved.txt; rm tmp_puredns
 
-    gotator -sub resolved.txt -perm ~/OSCP/WORDLISTS/DNS_perm -depth 1 -numbers 10 -mindup -adv -md | anew -q resolved.txt
+    gotator -sub resolved.txt -perm ~/TOOLS/WORDLISTS/DNS_perm -depth 1 -numbers 10 -mindup -adv -md | anew -q resolved.txt
     puredns resolve resolved.txt -r /usr/share/seclists/Discovery/DNS/resolvers.txt -w tmp_puredns;cat tmp_puredns | anew -q resolved.txt
 
     echo -e "\nBRUTEFORCING DNS + SSL ANALYSIS\n"
-    puredns bruteforce ~/OSCP/WORDLISTS/DNS.txt $1 -r /usr/share/seclists/Discovery/DNS/resolvers.txt -w tmp_puredns && cat tmp_puredns | anew -q resolved.txt && rm tmp_puredns
+    puredns bruteforce ~/TOOLS/WORDLISTS/DNS.txt $1 -r /usr/share/seclists/Discovery/DNS/resolvers.txt -w tmp_puredns && cat tmp_puredns | anew -q resolved.txt && rm tmp_puredns
     while read p; do cero $p | sed 's/^*.//' | grep -e "\." | grep $1 | anew -q resolved.txt; done < resolved.txt
 
     echo -e "\nWEB ANALYSIS\n"
